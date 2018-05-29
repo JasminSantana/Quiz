@@ -1,0 +1,894 @@
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (173.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (124.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateQuestions (20180524053558)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "questions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180524053558"]]
+  [1m[35m (97.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (11.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-05-24 05:36:56.438039"], ["updated_at", "2018-05-24 05:36:56.438039"]]
+  [1m[35m (104.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateChoices (20180524053808)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "choices" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" varchar, "correct" integer, "question_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_182ad7dfd9"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX "index_choices_on_question_id" ON "choices" ("question_id")[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180524053808"]]
+  [1m[35m (110.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_choices_on_question_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_choices_on_question_id' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_choices_on_question_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_choices_on_question_id' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateChoices (20180524053808)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (8.0ms)[0m  [1m[35mDROP TABLE "choices"[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20180524053808"]]
+  [1m[35m (129.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateChoices (20180524053808)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "choices" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "text" varchar, "correct" integer, "question_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_182ad7dfd9"
+FOREIGN KEY ("question_id")
+  REFERENCES "questions" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE  INDEX "index_choices_on_question_id" ON "choices" ("question_id")[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180524053808"]]
+  [1m[35m (216.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_choices_on_question_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_choices_on_question_id' AND type='index'
+[0m
+Started GET "/" for 127.0.0.1 at 2018-05-24 01:37:21 -0500
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/railties-5.1.6/lib/rails/templates/rails/welcome/index.html.erb (95.0ms)
+Completed 200 OK in 716ms (Views: 447.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/questions" for 127.0.0.1 at 2018-05-24 01:37:38 -0500
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  Rendering questions/index.html.erb within layouts/application
+  Rendered questions/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 8275ms (Views: 8120.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/questions/new" for 127.0.0.1 at 2018-05-24 01:38:24 -0500
+Processing by QuestionsController#new as HTML
+  Rendering questions/new.html.erb within layouts/application
+  Rendered questions/_form.html.erb (360.3ms)
+  Rendered questions/new.html.erb within layouts/application (426.3ms)
+Completed 200 OK in 982ms (Views: 892.2ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/questions" for 127.0.0.1 at 2018-05-24 01:38:39 -0500
+Processing by QuestionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tdVNLMIpcwzJ0D7kLYvpJU+Y1SUkzaVk5MyaTcgN9i+7xLwNU504YtfhXxEvDQ6xeeK61Mzgf6C+U8ZYk+cCRg==", "question"=>{"text"=>"¿Cual es tu color favorito?"}, "commit"=>"Create Question"}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (6.0ms)[0m  [1m[32mINSERT INTO "questions" ("text", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["text", "¿Cual es tu color favorito?"], ["created_at", "2018-05-24 06:38:39.136456"], ["updated_at", "2018-05-24 06:38:39.136456"]]
+  [1m[35m (136.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://127.0.0.1:3000/questions/1
+Completed 302 Found in 162ms (ActiveRecord: 142.5ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2018-05-24 01:38:39 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (2.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  Rendered questions/show.html.erb within layouts/application (177.2ms)
+Completed 500 Internal Server Error in 530ms (ActiveRecord: 2.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `text' for nil:NilClass):
+    1: <p id="notice"><%= notice %></p>
+    2: <p>
+    3:   <strong>Text:</strong>
+    4:   <%= @question.text %>
+    5: </p>
+    6: <h4>Choices</h4>
+    7: <ul>
+  
+app/views/questions/show.html.erb:4:in `_app_views_questions_show_html_erb___246159799_69350604'
+Started GET "/questions/1" for 127.0.0.1 at 2018-05-24 01:40:22 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (2.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  Rendered questions/show.html.erb within layouts/application (65.0ms)
+Completed 500 Internal Server Error in 307ms (ActiveRecord: 2.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `choices' for nil:NilClass):
+     5: </p>
+     6: <h4>Choices</h4>
+     7: <ul>
+     8:   <% @question.choices.find_each do |choice| %>
+     9:       <li>
+    10:         <%= choice.text %>
+    11:         <% if choice.correct %> (Correct) <% end %>
+  
+app/views/questions/show.html.erb:8:in `_app_views_questions_show_html_erb___246159799_98079756'
+Started GET "/questions/1" for 127.0.0.1 at 2018-05-24 01:41:59 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 1], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (486.5ms)
+Completed 200 OK in 945ms (Views: 878.8ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/questions" for 127.0.0.1 at 2018-05-24 01:42:16 -0500
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mChoice Load (2.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 1]]
+  Rendered questions/index.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 437ms (Views: 371.6ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/questions/1/edit" for 127.0.0.1 at 2018-05-24 01:42:24 -0500
+Processing by QuestionsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/edit.html.erb within layouts/application
+  Rendered questions/_form.html.erb (5.0ms)
+  Rendered questions/edit.html.erb within layouts/application (63.0ms)
+Completed 200 OK in 479ms (Views: 413.7ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/questions/1" for 127.0.0.1 at 2018-05-24 01:42:40 -0500
+Processing by QuestionsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zXcJpiF7796hsldPoI0HpqP7MFKvCaq2OIgR7cJGRHdVmzIjE6SZ5epGdw6TkY3VM5QQyAiMrfo6KntiR30cTQ==", "question"=>{"text"=>"¿Cual es tu artista favorito?"}, "commit"=>"Update Question", "id"=>"1"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (3.0ms)[0m  [1m[33mUPDATE "questions" SET "text" = ?, "updated_at" = ? WHERE "questions"."id" = ?[0m  [["text", "¿Cual es tu artista favorito?"], ["updated_at", "2018-05-24 06:42:40.514653"], ["id", 1]]
+  [1m[35m (176.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://127.0.0.1:3000/questions/1
+Completed 302 Found in 196ms (ActiveRecord: 179.9ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2018-05-24 01:42:40 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 1], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 433ms (Views: 368.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/questions" for 127.0.0.1 at 2018-05-24 01:42:48 -0500
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 1]]
+  Rendered questions/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 422ms (Views: 359.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/questions/new" for 127.0.0.1 at 2018-05-24 01:42:50 -0500
+Processing by QuestionsController#new as HTML
+  Rendering questions/new.html.erb within layouts/application
+  Rendered questions/_form.html.erb (6.0ms)
+  Rendered questions/new.html.erb within layouts/application (64.0ms)
+Completed 200 OK in 473ms (Views: 413.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/questions" for 127.0.0.1 at 2018-05-24 01:43:03 -0500
+Processing by QuestionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+yQY+R7JqexS6Y5WBluLkZ2rlvnRU6Bdt5wHCUP0Kwz1NenYj33igkzY76ME3WwFq9H5CDl+epntA1scGB7fZQ==", "question"=>{"text"=>"¿Cual es tu materia preferida?"}, "commit"=>"Create Question"}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (5.0ms)[0m  [1m[32mINSERT INTO "questions" ("text", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["text", "¿Cual es tu materia preferida?"], ["created_at", "2018-05-24 06:43:03.501598"], ["updated_at", "2018-05-24 06:43:03.501598"]]
+  [1m[35m (132.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://127.0.0.1:3000/questions/2
+Completed 302 Found in 149ms (ActiveRecord: 137.5ms)
+
+
+Started GET "/questions/2" for 127.0.0.1 at 2018-05-24 01:43:03 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 2], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 423ms (Views: 358.3ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/choices/create" for 127.0.0.1 at 2018-05-24 01:43:15 -0500
+Processing by ChoicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Z0OO3FuDiofQ1wiN2EBLu0CimJBkIZibKjGXf9wElfGmFzHaYzBzimvx1JySOqhBFCj+T1MdmoArMD/YhiW7BA==", "questions_path"=>"2", "text"=>"Programacion", "correct"=>"1", "commit"=>"Create"}
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 4ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Question with 'id'=):
+  
+app/controllers/choices_controller.rb:3:in `create'
+Started POST "/choices/create" for 127.0.0.1 at 2018-05-24 01:44:08 -0500
+Processing by ChoicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Z0OO3FuDiofQ1wiN2EBLu0CimJBkIZibKjGXf9wElfGmFzHaYzBzimvx1JySOqhBFCj+T1MdmoArMD/YhiW7BA==", "questions_path"=>"2", "text"=>"Programacion", "correct"=>"1", "commit"=>"Create"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (8.0ms)[0m  [1m[32mINSERT INTO "choices" ("text", "correct", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["text", "Programacion"], ["correct", 1], ["question_id", 2], ["created_at", "2018-05-24 06:44:08.995766"], ["updated_at", "2018-05-24 06:44:08.995766"]]
+  [1m[35m (296.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 2]]
+Redirected to http://127.0.0.1:3000/questions/2
+Completed 302 Found in 648ms (ActiveRecord: 313.8ms)
+
+
+Started GET "/questions/2" for 127.0.0.1 at 2018-05-24 01:44:09 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 2], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 480ms (Views: 413.6ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/choices/create" for 127.0.0.1 at 2018-05-24 01:44:31 -0500
+Processing by ChoicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EBrhbPF/yMCyaFD4YUP2LH0jKa10j0lu1b4TcP5opOTRTl5qycwxzQlOjOkrORXWKalPckOzS3XUv7vXpEmKEQ==", "questions_path"=>"2", "text"=>"Matematicas", "commit"=>"Create"}
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (6.0ms)[0m  [1m[32mINSERT INTO "choices" ("text", "correct", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["text", "Matematicas"], ["correct", 0], ["question_id", 2], ["created_at", "2018-05-24 06:44:31.812990"], ["updated_at", "2018-05-24 06:44:31.812990"]]
+  [1m[35m (144.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mChoice Load (2.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 2]]
+Redirected to http://127.0.0.1:3000/questions/2
+Completed 302 Found in 170ms (ActiveRecord: 152.5ms)
+
+
+Started GET "/questions/2" for 127.0.0.1 at 2018-05-24 01:44:32 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (2.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 2], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 484ms (Views: 420.6ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/choices/create" for 127.0.0.1 at 2018-05-24 01:44:50 -0500
+Processing by ChoicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MVr6GjGoGIW1xlgH9nkEBZbHsi+v68dNJ/DeXELSX8jwDkUcCRvhiA7ghBa8A+f/wk3U8JjXxVYm8Xb7GPNxPQ==", "questions_path"=>"2", "text"=>"Admin de proyectos", "correct"=>"1", "commit"=>"Create"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (80.9ms)[0m  [1m[32mINSERT INTO "choices" ("text", "correct", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["text", "Admin de proyectos"], ["correct", 1], ["question_id", 2], ["created_at", "2018-05-24 06:44:50.546421"], ["updated_at", "2018-05-24 06:44:50.546421"]]
+  [1m[35m (155.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mChoice Load (2.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 2]]
+Redirected to http://127.0.0.1:3000/questions/2
+Completed 302 Found in 263ms (ActiveRecord: 240.4ms)
+
+
+Started GET "/questions/2" for 127.0.0.1 at 2018-05-24 01:44:50 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 2], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 517ms (Views: 428.6ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/choices/destroy" for 127.0.0.1 at 2018-05-24 01:44:57 -0500
+Processing by ChoicesController#destroy as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"LuqAySaYZPp+/s3c+5NRuO6yW/6gWzwau66u7VOR8qHvvj/PHiud98XYEc2x6bJCujg9IZdnPgG6rwZKCbDcVA==", "question"=>"2", "choice"=>"2", "commit"=>"Delete"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (3.0ms)[0m  [1m[31mDELETE FROM "choices" WHERE "choices"."id" = ?[0m  [["id", 2]]
+  [1m[35m (115.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://127.0.0.1:3000/questions/2
+Completed 302 Found in 130ms (ActiveRecord: 120.5ms)
+
+
+Started GET "/questions/2" for 127.0.0.1 at 2018-05-24 01:44:57 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (2.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 2], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 497ms (Views: 425.9ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/questions/2/edit" for 127.0.0.1 at 2018-05-24 01:45:02 -0500
+Processing by QuestionsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering questions/edit.html.erb within layouts/application
+  Rendered questions/_form.html.erb (7.0ms)
+  Rendered questions/edit.html.erb within layouts/application (66.0ms)
+Completed 200 OK in 481ms (Views: 420.9ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/questions/2" for 127.0.0.1 at 2018-05-24 01:45:11 -0500
+Processing by QuestionsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PsDCNZWqbc4ol/BMhvPD8yk8coklDtwCBgrM3tM68F6U/Tejytv+vA/gEemUh8+lgeZV2PqSyBoPHGbW6nJx9g==", "question"=>{"text"=>"¿Cual es tu carrera preferida?"}, "commit"=>"Update Question", "id"=>"2"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (4.0ms)[0m  [1m[33mUPDATE "questions" SET "text" = ?, "updated_at" = ? WHERE "questions"."id" = ?[0m  [["text", "¿Cual es tu carrera preferida?"], ["updated_at", "2018-05-24 06:45:11.930054"], ["id", 2]]
+  [1m[35m (102.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://127.0.0.1:3000/questions/2
+Completed 302 Found in 122ms (ActiveRecord: 108.4ms)
+
+
+Started GET "/questions/2" for 127.0.0.1 at 2018-05-24 01:45:12 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 2], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 447ms (Views: 382.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/questions" for 127.0.0.1 at 2018-05-24 01:45:28 -0500
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (2.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mChoice Load (0.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 1]]
+  [1m[36mChoice Load (0.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 2]]
+  Rendered questions/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 423ms (Views: 361.7ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/questions/1/edit" for 127.0.0.1 at 2018-05-24 01:45:37 -0500
+Processing by QuestionsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/edit.html.erb within layouts/application
+  Rendered questions/_form.html.erb (6.0ms)
+  Rendered questions/edit.html.erb within layouts/application (72.0ms)
+Completed 200 OK in 526ms (Views: 459.7ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/questions/1" for 127.0.0.1 at 2018-05-24 01:45:41 -0500
+Processing by QuestionsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DdM7PgJAWHpHKvWu0AM5AOf6DpJq4Ve6KGEAaM1T3b6VPwC7MJ8uQQze1e/jH7Nzd5UuCM1kUPYqw2rnSGiFhA==", "question"=>{"text"=>"¿Cual es tu artista favorito?"}, "commit"=>"Update Question", "id"=>"1"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://127.0.0.1:3000/questions/1
+Completed 302 Found in 8ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2018-05-24 01:45:41 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 1], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 438ms (Views: 366.8ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/choices/create" for 127.0.0.1 at 2018-05-24 01:45:47 -0500
+Processing by ChoicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VapW4ALwPnahrjfdJmgKnJReEFlI/dUqTrqTvPDJwk2U/unmOkPHexqI68xsEulmwNR2hn/B1zFPuzsbqujsuA==", "questions_path"=>"1", "text"=>"Bruno Mars", "commit"=>"Create"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (6.0ms)[0m  [1m[32mINSERT INTO "choices" ("text", "correct", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["text", "Bruno Mars"], ["correct", 0], ["question_id", 1], ["created_at", "2018-05-24 06:45:47.943286"], ["updated_at", "2018-05-24 06:45:47.943286"]]
+  [1m[35m (119.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 1]]
+Redirected to http://127.0.0.1:3000/questions/1
+Completed 302 Found in 141ms (ActiveRecord: 127.5ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2018-05-24 01:45:48 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 1], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 428ms (Views: 366.4ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/choices/create" for 127.0.0.1 at 2018-05-24 01:46:05 -0500
+Processing by ChoicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pn20MYVclgHP1fJ8g/BlJg4vKKIC+DOa/VdSpcnfkPJnKQs3ve9vDHTzLm3JiobcWqVOfTXEMYH8VvoCk/6+Bw==", "questions_path"=>"1", "text"=>"CollPlay", "commit"=>"Create"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (58.0ms)[0m  [1m[32mINSERT INTO "choices" ("text", "correct", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["text", "CollPlay"], ["correct", 0], ["question_id", 1], ["created_at", "2018-05-24 06:46:05.306506"], ["updated_at", "2018-05-24 06:46:05.306506"]]
+  [1m[35m (152.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mChoice Load (2.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 1]]
+Redirected to http://127.0.0.1:3000/questions/1
+Completed 302 Found in 236ms (ActiveRecord: 213.4ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2018-05-24 01:46:05 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 1], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 416ms (Views: 347.2ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/choices/create" for 127.0.0.1 at 2018-05-24 01:46:10 -0500
+Processing by ChoicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ujoNdJNSKgWe4o85XokcTnoAwUO0XhpiMjYm3Snkg6N7brJyq+HTCCXEUygU8/+0LoqnnINiGHkzN456c8WtVg==", "questions_path"=>"1", "text"=>"", "commit"=>"Create"}
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "choices" ("text", "correct", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["text", ""], ["correct", 0], ["question_id", 1], ["created_at", "2018-05-24 06:46:10.451157"], ["updated_at", "2018-05-24 06:46:10.451157"]]
+  [1m[35m (154.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mChoice Load (2.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 1]]
+Redirected to http://127.0.0.1:3000/questions/1
+Completed 302 Found in 180ms (ActiveRecord: 161.2ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2018-05-24 01:46:10 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (2.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 1], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 444ms (Views: 366.8ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/choices/destroy" for 127.0.0.1 at 2018-05-24 01:46:13 -0500
+Processing by ChoicesController#destroy as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DBwMCQMvs3vYoAertZI2/vScunPlj34q0SLoa2Dfw3rNSLMPO5xKdmOG27r/6NUEoBbcrNKzfDHQI0DMOv7tjw==", "question"=>"1", "choice"=>"6", "commit"=>"Delete"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChoice Load (0.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (4.0ms)[0m  [1m[31mDELETE FROM "choices" WHERE "choices"."id" = ?[0m  [["id", 6]]
+  [1m[35m (160.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://127.0.0.1:3000/questions/1
+Completed 302 Found in 176ms (ActiveRecord: 165.5ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2018-05-24 01:46:13 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 1], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 448ms (Views: 370.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/questions" for 127.0.0.1 at 2018-05-24 01:46:16 -0500
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 1]]
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 2]]
+  Rendered questions/index.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 431ms (Views: 368.6ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/quiz" for 127.0.0.1 at 2018-05-24 01:46:27 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/quiz"):
+  
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.6.2) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.2) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.11.4) lib/puma/configuration.rb:225:in `call'
+puma (3.11.4) lib/puma/server.rb:632:in `handle_request'
+puma (3.11.4) lib/puma/server.rb:446:in `process_client'
+puma (3.11.4) lib/puma/server.rb:306:in `block in run'
+puma (3.11.4) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/quiz/index" for 127.0.0.1 at 2018-05-24 01:48:37 -0500
+Processing by QuizController#index as HTML
+  Rendering quiz/index.html.erb within layouts/application
+  Rendered quiz/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 425ms (Views: 367.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/quiz/start" for 127.0.0.1 at 2018-05-24 01:48:46 -0500
+Processing by QuizController#start as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"C4Q8+lz8LgeC9l27yMb/sIJdwedr2RZpQP2S+F40tGTK0IP8ZE/XCjnQgaqCvBxK1tenOFzlFHJB/DpfBBWakQ==", "number"=>"3", "commit"=>"Start:"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+Redirected to http://127.0.0.1:3000/quiz/question
+Completed 302 Found in 5ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/quiz/question" for 127.0.0.1 at 2018-05-24 01:48:46 -0500
+Processing by QuizController#question as HTML
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 1]]
+  Rendering quiz/question.html.erb within layouts/application
+  Rendered quiz/question.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 431ms (Views: 361.7ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/quiz/answer" for 127.0.0.1 at 2018-05-24 01:48:54 -0500
+Processing by QuizController#answer as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CDH5wwNWCIvXUKeMe3MkMjn/CakuOWMDBLhOWV/xfpTJZUbFO+Xxhmx2e50xCcfIbXVvdhkFYRgFueb+BdBQYQ==", "choice"=>"4", "commit"=>"Continue"}
+  [1m[36mChoice Load (0.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering quiz/answer.html.erb within layouts/application
+  Rendered quiz/answer.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 420ms (Views: 359.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/quiz/question" for 127.0.0.1 at 2018-05-24 01:49:00 -0500
+Processing by QuizController#question as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"z/5SmyXh7lb8o72Az/drHxcfSpS8M9i++0ZoxiTRJh0Oqu2dHVIXW0eFYZGFjYjlQ5UsS4sP2qX6R8BhfvAI6A==", "commit"=>"Continue"}
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 2]]
+  Rendering quiz/question.html.erb within layouts/application
+  Rendered quiz/question.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 428ms (Views: 362.4ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/quiz/answer" for 127.0.0.1 at 2018-05-24 01:49:06 -0500
+Processing by QuizController#answer as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4nYzb3Tg2arPa+nq7/BluFxDRuRRQ6DoEIgDnhFMmvsjIoxpTFMgp3RNNfulioZCCMkgO2Z/ovMRias5S220Dg==", "choice"=>"1", "commit"=>"Continue"}
+  [1m[36mChoice Load (0.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering quiz/answer.html.erb within layouts/application
+  Rendered quiz/answer.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 427ms (Views: 365.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/quiz/question" for 127.0.0.1 at 2018-05-24 01:49:11 -0500
+Processing by QuizController#question as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"sOCwM8AJmXrUjrcxSBXcI3u87L4Bou+Td/Eg+2bF1s1xtA81+Lpgd2+oayACbz/ZLzaKYTae7Yh28IhcPOT4OA==", "commit"=>"Continue"}
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 5ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Question with 'id'=):
+  
+app/controllers/quiz_controller.rb:21:in `question'
+Started GET "/" for 127.0.0.1 at 2018-05-28 14:26:36 -0500
+Started GET "/" for 127.0.0.1 at 2018-05-28 14:26:38 -0500
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/questions" for 127.0.0.1 at 2018-05-28 14:46:54 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (9.2ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mChoice Load (19.4ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 1]]
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 2]]
+  Rendered questions/index.html.erb within layouts/application (475.5ms)
+Completed 200 OK in 2937ms (Views: 2718.1ms | ActiveRecord: 36.7ms)
+
+
+Started GET "/questions/1/edit" for 127.0.0.1 at 2018-05-28 14:48:11 -0500
+Processing by QuestionsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/edit.html.erb within layouts/application
+  Rendered questions/_form.html.erb (268.8ms)
+  Rendered questions/edit.html.erb within layouts/application (348.9ms)
+Completed 200 OK in 863ms (Views: 776.4ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/questions/1" for 127.0.0.1 at 2018-05-28 14:50:55 -0500
+Processing by QuestionsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ibwxFQjUv8hhuPjFufn+EFXIR2Hpvl6KRJm7YTzFwtOYjv9rXHKpCfbM+M0rB3EA8y6KS/tc14n6N37i9nZkBA==", "question"=>{"text"=>"¿Cual es tu cantante favorito?"}, "commit"=>"Update Question", "id"=>"1"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (26.0ms)[0m  [1m[33mUPDATE "questions" SET "text" = ?, "updated_at" = ? WHERE "questions"."id" = ?[0m  [["text", "¿Cual es tu cantante favorito?"], ["updated_at", "2018-05-28 19:50:55.622396"], ["id", 1]]
+  [1m[35m (145.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/questions/1
+Completed 302 Found in 204ms (ActiveRecord: 172.2ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2018-05-28 14:50:55 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 1], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (23.0ms)
+Completed 200 OK in 569ms (Views: 471.5ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/choices/destroy" for 127.0.0.1 at 2018-05-28 14:51:02 -0500
+Processing by ChoicesController#destroy as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"7QQ0QaXR8rMQrFV73tfj/0WSG5TRvFlgaFyqqBRjNkOhmqO+O4dY6wKerrrLZNEPeP29biPnrhVic952azyWaQ==", "question"=>"1", "choice"=>"4", "commit"=>"Delete"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (6.0ms)[0m  [1m[31mDELETE FROM "choices" WHERE "choices"."id" = ?[0m  [["id", 4]]
+  [1m[35m (160.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/questions/1
+Completed 302 Found in 192ms (ActiveRecord: 169.4ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2018-05-28 14:51:03 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 1], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 505ms (Views: 377.3ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/choices/create" for 127.0.0.1 at 2018-05-28 14:51:40 -0500
+Processing by ChoicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"cE2fLDQwH+e0vRArpUdRlQzC5wDNnwqThs/s8UxW6kg80wjTqma1v6aP6+qw9GNlMa1B+j/E/eaM4JgvMwlKYg==", "questions_path"=>"1", "text"=>"Katy Perry", "commit"=>"Create"}
+  [1m[36mQuestion Load (1.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (5.8ms)[0m  [1m[32mINSERT INTO "choices" ("text", "correct", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["text", "Katy Perry"], ["correct", 0], ["question_id", 1], ["created_at", "2018-05-28 19:51:40.944249"], ["updated_at", "2018-05-28 19:51:40.944249"]]
+  [1m[35m (254.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 1]]
+Redirected to http://localhost:3000/questions/1
+Completed 302 Found in 327ms (ActiveRecord: 264.7ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2018-05-28 14:51:41 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (2.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (0.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 1], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 412ms (Views: 349.3ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/choices/destroy" for 127.0.0.1 at 2018-05-28 14:51:49 -0500
+Processing by ChoicesController#destroy as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TYmWTbFqPsIZxXtg1dQrc3mOuxlJaxaDirC90gz7gQUBFwGyLzyUmgv3gKHAZxmDROEd47sw4faAn8kMc6QhLw==", "question"=>"1", "choice"=>"5", "commit"=>"Delete"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (19.0ms)[0m  [1m[31mDELETE FROM "choices" WHERE "choices"."id" = ?[0m  [["id", 5]]
+  [1m[35m (148.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/questions/1
+Completed 302 Found in 197ms (ActiveRecord: 169.6ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2018-05-28 14:51:50 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 1], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 368ms (Views: 303.8ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/choices/create" for 127.0.0.1 at 2018-05-28 14:52:15 -0500
+Processing by ChoicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SfXSNs0CnuS4S62Ff7wLZ3/od7xq2Xri6JUJmyV2yWkFa0XJU1Q0vKp5VkRqDzmXQofRRpiCjZfiun1FWilpQw==", "questions_path"=>"1", "text"=>"Miley Cyrus", "commit"=>"Create"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (23.0ms)[0m  [1m[32mINSERT INTO "choices" ("text", "correct", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["text", "Miley Cyrus"], ["correct", 0], ["question_id", 1], ["created_at", "2018-05-28 19:52:15.623755"], ["updated_at", "2018-05-28 19:52:15.623755"]]
+  [1m[35m (137.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 1]]
+Redirected to http://localhost:3000/questions/1
+Completed 302 Found in 191ms (ActiveRecord: 162.1ms)
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2018-05-28 14:52:15 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 1], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 399ms (Views: 332.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/questions" for 127.0.0.1 at 2018-05-28 14:52:21 -0500
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 1]]
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 2]]
+  Rendered questions/index.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 371ms (Views: 307.2ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/questions/2/edit" for 127.0.0.1 at 2018-05-28 14:52:29 -0500
+Processing by QuestionsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering questions/edit.html.erb within layouts/application
+  Rendered questions/_form.html.erb (3.0ms)
+  Rendered questions/edit.html.erb within layouts/application (61.0ms)
+Completed 200 OK in 418ms (Views: 356.2ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/questions/2" for 127.0.0.1 at 2018-05-28 14:52:41 -0500
+Processing by QuestionsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KmxCFX6PObmXqR1Rn+3nUAgaBaSxLTXQjy1D2MD+dfSXQ6wGo0XO7HkhaIeE6fFmANdiQ6N6u7dYhSV++ITMUg==", "question"=>{"text"=>"¿Cual es tu materia favorita?"}, "commit"=>"Update Question", "id"=>"2"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (15.1ms)[0m  [1m[33mUPDATE "questions" SET "text" = ?, "updated_at" = ? WHERE "questions"."id" = ?[0m  [["text", "¿Cual es tu materia favorita?"], ["updated_at", "2018-05-28 19:52:41.930046"], ["id", 2]]
+  [1m[35m (127.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/questions/2
+Completed 302 Found in 174ms (ActiveRecord: 144.3ms)
+
+
+Started GET "/questions/2" for 127.0.0.1 at 2018-05-28 14:52:42 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mQuestion Load (0.5ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 2], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 480ms (Views: 395.3ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/choices/destroy" for 127.0.0.1 at 2018-05-28 14:52:46 -0500
+Processing by ChoicesController#destroy as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"U9PCma75ZE3oXAVuYffxFL0eMGw4I9S3ziYBnSwwBcgfTVVmMK/OFfpu/q90RMPkgHGWlsp4I8LECXVDU2+l4g==", "question"=>"2", "choice"=>"1", "commit"=>"Delete"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mChoice Load (2.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (19.3ms)[0m  [1m[31mDELETE FROM "choices" WHERE "choices"."id" = ?[0m  [["id", 1]]
+  [1m[35m (116.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/questions/2
+Completed 302 Found in 170ms (ActiveRecord: 138.7ms)
+
+
+Started GET "/questions/2" for 127.0.0.1 at 2018-05-28 14:52:46 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 2], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 402ms (Views: 343.4ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/choices/create" for 127.0.0.1 at 2018-05-28 14:52:58 -0500
+Processing by ChoicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"T6XuldilQxvbOCIlDK6Pt8TUXtp21J7kF0z44IV3TX4DO3lqRvPpQ8kK2eQZHb1H+bv4IISPaZEdY4w++ijtVA==", "questions_path"=>"2", "text"=>"Mátematicas", "commit"=>"Create"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (22.1ms)[0m  [1m[32mINSERT INTO "choices" ("text", "correct", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["text", "Mátematicas"], ["correct", 0], ["question_id", 2], ["created_at", "2018-05-28 19:52:58.226311"], ["updated_at", "2018-05-28 19:52:58.226311"]]
+  [1m[35m (128.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 2]]
+Redirected to http://localhost:3000/questions/2
+Completed 302 Found in 183ms (ActiveRecord: 154.0ms)
+
+
+Started GET "/questions/2" for 127.0.0.1 at 2018-05-28 14:52:58 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (0.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 2], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 374ms (Views: 306.9ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/choices/destroy" for 127.0.0.1 at 2018-05-28 14:53:05 -0500
+Processing by ChoicesController#destroy as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"fuCaEX5zGB0H+/uy8jkSNpa4bNQiLTGLHGU+f4hpw7Uyfg3u4CWyRRXJAHPniiDGq9fKLtB2xv4WSkqh9zZjnw==", "question"=>"2", "choice"=>"3", "commit"=>"Delete"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mChoice Load (0.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (14.0ms)[0m  [1m[31mDELETE FROM "choices" WHERE "choices"."id" = ?[0m  [["id", 3]]
+  [1m[35m (118.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/questions/2
+Completed 302 Found in 153ms (ActiveRecord: 133.4ms)
+
+
+Started GET "/questions/2" for 127.0.0.1 at 2018-05-28 14:53:05 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 2], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 370ms (Views: 308.6ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/choices/create" for 127.0.0.1 at 2018-05-28 14:53:18 -0500
+Processing by ChoicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rjnS4LI68XzyBuDQ2jG4j3AhmaxD2Jgwic2zQaxJ9dDip0UfLGxbJOA0GxHPgop/TU4/VrGDb0WD4sef0xZV+g==", "questions_path"=>"2", "text"=>"Ingles", "commit"=>"Create"}
+  [1m[36mQuestion Load (2.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mQuestion Load (2.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (948.2ms)[0m  [1m[32mINSERT INTO "choices" ("text", "correct", "question_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["text", "Ingles"], ["correct", 0], ["question_id", 2], ["created_at", "2018-05-28 19:53:18.931625"], ["updated_at", "2018-05-28 19:53:18.931625"]]
+  [1m[35m (220.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 2]]
+Redirected to http://localhost:3000/questions/2
+Completed 302 Found in 1269ms (ActiveRecord: 1174.2ms)
+
+
+Started GET "/questions/2" for 127.0.0.1 at 2018-05-28 14:53:20 -0500
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT  "questions".* FROM "questions" WHERE "questions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering questions/show.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT  "choices".* FROM "choices" WHERE "choices"."question_id" = ? ORDER BY "choices"."id" ASC LIMIT ?[0m  [["question_id", 2], ["LIMIT", 1000]]
+  Rendered questions/show.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 435ms (Views: 352.4ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/questions" for 127.0.0.1 at 2018-05-28 14:53:25 -0500
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (1.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions"[0m
+  Rendering questions/index.html.erb within layouts/application
+  [1m[36mChoice Load (1.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 1]]
+  [1m[36mChoice Load (0.0ms)[0m  [1m[34mSELECT "choices".* FROM "choices" WHERE "choices"."question_id" = ?[0m  [["question_id", 2]]
+  Rendered questions/index.html.erb within layouts/application (18.5ms)
+Completed 200 OK in 580ms (Views: 468.6ms | ActiveRecord: 2.0ms)
+
+
